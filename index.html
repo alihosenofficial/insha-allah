@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Themed Countdown Timer</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            color: #33ff33;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .timer-container {
+            text-align: center;
+        }
+        .timer-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #33ff33;
+        }
+        .time {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .unit {
+            font-size: 1.5em;
+            padding: 10px;
+            background: #111;
+            border: 2px solid #33ff33;
+            border-radius: 5px;
+            box-shadow: 0 0 15px #33ff33;
+        }
+        @media (max-width: 600px) {
+            .timer-title {
+                font-size: 1.5em;
+            }
+            .unit {
+                font-size: 1em;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <div class="timer-title">Countdown to 1st April 2025</div>
+        <div class="time" id="countdown">
+            <div class="unit" id="months">00 Months</div>
+            <div class="unit" id="days">00 Days</div>
+            <div class="unit" id="hours">00 Hours</div>
+            <div class="unit" id="minutes">00 Minutes</div>
+            <div class="unit" id="seconds">00 Seconds</div>
+        </div>
+    </div>
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('2025-04-01T00:00:00');
+            const now = new Date();
+            let diff = targetDate - now;
+
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+            diff -= months * 1000 * 60 * 60 * 24 * 30;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff -= days * 1000 * 60 * 60 * 24;
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff -= hours * 1000 * 60 * 60;
+
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff -= minutes * 1000 * 60;
+
+            const seconds = Math.floor(diff / 1000);
+
+            document.getElementById("months").textContent = `${months} Months`;
+            document.getElementById("days").textContent = `${days} Days`;
+            document.getElementById("hours").textContent = `${hours} Hours`;
+            document.getElementById("minutes").textContent = `${minutes} Minutes`;
+            document.getElementById("seconds").textContent = `${seconds} Seconds`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
