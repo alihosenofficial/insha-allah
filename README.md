@@ -1,0 +1,2 @@
+# insha-allah
+Insha'Allah 🫶
